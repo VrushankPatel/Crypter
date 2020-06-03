@@ -1,8 +1,22 @@
-import tkinter as tk
+from tkinter import * 
 
-class Window:
-    def __init__(self,title,isFullScreen):
-        self.window = tk.Tk()
-        self.window.attributes('-fullscreen',isFullScreen)
+class Window:        
+    def __init__(self, title):        
+        self.window = Tk()
+        self.window.resizable(False,False)
+        #self.window.minsize(sizeX,sizeY)
         self.window.title("Crypter")
-        
+
+    def getEntryObject(self, row, column):
+        return Entry(self.window).grid(row=row,column=column)
+
+    def getTextArea(self,height,width):
+        return Text(self.window,height = height, width = width)
+
+    def getLabel(self,text):
+        return Label(self.window,text=text)
+
+    def getDropDownMenu(self,options):
+        var = StringVar(self.window)
+        var.set(options[0])
+        return OptionMenu(self.window,var,*options)
