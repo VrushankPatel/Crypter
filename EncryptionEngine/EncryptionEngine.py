@@ -1,6 +1,7 @@
 import hashlib 
 import sys
-import RC4
+from arc4 import ARC4
+
 
 class SHA:
     def __init__(self,str):
@@ -26,7 +27,9 @@ class SHA:
 
     def rc4(self,key):
         print(key)
-        return RC4.rc4crypt(self.str,key)
+        cipher = b'U7\x06\xdf\xd7\xb5d\x16^\xeb\xc7\x02\xdf'
+        print(ARC4(key).decrypt(cipher))
+        return ARC4(key).encrypt(self.str)        
 
     def getEncrypted(self,object,encryption,param):
         if param:
