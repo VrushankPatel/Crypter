@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
     window.calculateBtn = window.getButton(constants.CALCULATE)
     window.calculateBtn.grid(row=5,column=1,pady=(10,10))
-    window.encDecOpEntry = window.getTextArea(4,51,constants.NORMAL)
+    window.encDecOpEntry = window.getTextArea(4,51,constants.DISABLED)
     window.encDecOpEntry.grid(row=6,column=0,columnspan=2)
-
+    window.encDecOpEntry.config(state=constants.DISABLED)
     window.window.mainloop()

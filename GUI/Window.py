@@ -1,9 +1,13 @@
 from tkinter import * 
 import tkinter.font as font
 import GUI.Constants as constants
+from EncryptionEngine import EncryptionEngine as Enc
+from DecryptionEngine import DecryptionEngine as Dec
 class Window: 
-    def __init__(self, title):        
+    def __init__(self, title):         
         self.window = Tk()
+        self.encryptionengine = Enc.EncryptionEngine()
+        self.decryptionengine = Dec.DecrytionEngine()
         self.selection = IntVar()
         self.selection.set(1)
         self.window.resizable(False, False)
@@ -20,7 +24,7 @@ class Window:
         return Label(self.window,text=text)
 
     def getButton(self,text):
-        return Button(self.window,text=text,width = 20,borderwidth=1,relief="solid",font=font.Font(size=10))
+        return Button(self.window,text=text,width = 20,borderwidth=1,relief="solid",font=font.Font(size=10),command=self.onClick)
 
     def getRadioButton(self,text,value,command,state):        
         return Radiobutton(self.window,text=text,variable=self.selection,value=value,command=command,indicatoron=0,state = state)
@@ -43,8 +47,31 @@ class Window:
         else:
             self.disableDecryptRadio()
             self.disableKeyField(self.keyEntry)
-
     
+    def onClick(self):
+        if self.selection.get() == 1:                        
+            self.updateTextArea(
+                self.encryptionengine.getEncrypted(
+                    self.encryptionengine,
+                    self.var.get().lower(),
+                    self.strCipherEntry.get("1.0","end-1c")
+                    ,None))
+        elif self.selection.get() == 2:
+            self.updateTextArea(
+                self.decryptionengine.getDecrypted(
+                    self.decryptionengine,
+                    self.var.get().lower(),
+                    self.strCipherEntry.get("1.0","end-1c"),
+                    self.keyEntry.get("1.0","end-1c")
+                )
+            )      
+
+    def updateTextArea(self,text):
+        self.encDecOpEntry.config(state=constants.NORMAL)
+        self.encDecOpEntry.delete("1.0","end-1c")
+        self.encDecOpEntry.insert("1.0",text)
+        self.encDecOpEntry.config(state=constants.DISABLED)
+
 
     def enableDecryptRadio(self):
         self.decrypter_radio.config(state=constants.NORMAL)

@@ -1,12 +1,9 @@
 import hashlib 
 import sys
-from arc4 import ARC4
+#from arc4 import ARC4
 
 
-class SHA:
-    def __init__(self,str):
-        self.str = str
-
+class EncryptionEngine:
     def sha256(self):
         return hashlib.sha256(self.str.encode()).hexdigest()
 
@@ -25,23 +22,24 @@ class SHA:
     def md5(self):
         return hashlib.md5(self.str.encode()).hexdigest()        
 
-    def rc4(self,key):
-        print(key)
+    def rc4(self):
+        print(self.key)
         cipher = b'U7\x06\xdf\xd7\xb5d\x16^\xeb\xc7\x02\xdf'
-        print(ARC4(key).decrypt(cipher))
-        return ARC4(key).encrypt(self.str)        
+        print(ARC4(self.key).decrypt(cipher))
+        return ARC4(self.key).encrypt(self.str)        
 
-    def getEncrypted(self,object,encryption,param):
-        if param:
-            return getattr(object,encryption)(param)
-        else:
-            return getattr(object,encryption)()
-
-sha = SHA("GeeksforGeeks")
-print(sha.getEncrypted(sha,"sha256",None))
-print(sha.getEncrypted(sha,"sha384",None))
-print(sha.getEncrypted(sha,"sha224",None))
-print(sha.getEncrypted(sha,"sha512",None))
-print(sha.getEncrypted(sha,"sha1",None))
-print(sha.getEncrypted(sha,"md5",None))
+    def getEncrypted(self,object,encryption,str,key): 
+        self.key = key
+        self.str = str       
+        return getattr(object,encryption)()
+'''
+sha = EncryptionEngine("GeeksforGeeks","")
+print(sha.getEncrypted(sha,"sha256"))
+print(sha.getEncrypted(sha,"sha384"))
+print(sha.getEncrypted(sha,"sha224"))
+print(sha.getEncrypted(sha,"sha512"))
+print(sha.getEncrypted(sha,"sha1"))
+print(sha.getEncrypted(sha,"md5"))
+print(sha.getEncrypted(sha,"rc4"))
 print(sha.getEncrypted(sha,"rc4","Vrushank"))
+'''
