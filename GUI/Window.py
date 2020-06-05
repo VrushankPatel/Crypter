@@ -1,4 +1,5 @@
 from tkinter import * 
+import tkinter.font as font
 import GUI.Constants as constants
 class Window: 
     def __init__(self, title):        
@@ -18,13 +19,22 @@ class Window:
     def getLabel(self,text):
         return Label(self.window,text=text)
 
-    def getRadioButton(self,text,value,command,state):
-        
+    def getButton(self,text):
+        return Button(self.window,text=text,width = 20,borderwidth=1,relief="solid",font=font.Font(size=10))
+
+    def getRadioButton(self,text,value,command,state):        
         return Radiobutton(self.window,text=text,variable=self.selection,value=value,command=command,indicatoron=0,state = state)
 
+    def getDropDownMenu(self):
+        self.var = StringVar(self.window)
+        self.var.set(self.options[0])
+        self.var.trace("w",self.dropDownListener)        
+        return OptionMenu(self.window,self.var,*self.options)
+        
     def encDecKeyLabelChanger(self):        
         self.encdeclabel.config(text = constants.DECRYPTION_TEXT if self.selection.get() == 2 else constants.ENCRYPTION_TEXT)
         self.keylabel.config(text= constants.DECRYPT_KEY_FIELD_TEXT if self.selection.get() == 2 else constants.ENCRYPT_KEY_FIELD_TEXT)
+        self.strCipherOutputLabel.config(text = constants.STRING_LBL if self.selection.get() == 2 else constants.CIPHER_LBL)
 
     def dropDownListener(self,*args):
         if self.var.get() in constants.KEY_BASED_ENCRYPTIONS:
@@ -34,11 +44,7 @@ class Window:
             self.disableDecryptRadio()
             self.disableKeyField(self.keyEntry)
 
-    def getDropDownMenu(self):
-        self.var = StringVar(self.window)
-        self.var.set(self.options[0])
-        self.var.trace("w",self.dropDownListener)        
-        return OptionMenu(self.window,self.var,*self.options)
+    
 
     def enableDecryptRadio(self):
         self.decrypter_radio.config(state=constants.NORMAL)

@@ -20,9 +20,9 @@ DECRYPTER = "Decrypter"
 LIGHTGREY = "lightgrey"
 WHITE = "white"
 
+CALCULATE = "Calculate"
 # States
 DISABLED = "disabled"
-
 NORMAL = "normal"
 
 # Encryption Decryption text label constants
@@ -31,3 +31,5 @@ DECRYPTION_TEXT = "Enter the cipher to be decrypted"
 ENCRYPT_KEY_FIELD_TEXT = "Enter Key to encrypt the string : "
 DECRYPT_KEY_FIELD_TEXT = "Enter Key to decrypt the cipher : "
 CHOOSE_ALGORITHM_TEXT = "Choose the Algorithm : "
+CIPHER_LBL = "Cipher Text"
+STRING_LBL = "Decrypted Text"
