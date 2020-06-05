@@ -18,17 +18,41 @@ class Window:
     def getLabel(self,text):
         return Label(self.window,text=text)
 
-    def getRadioButton(self,text,value,command):
-        return Radiobutton(self.window,text=text,variable=self.selection,value=value,command=command,indicatoron=0)
+    def getRadioButton(self,text,value,command,state):
+        
+        return Radiobutton(self.window,text=text,variable=self.selection,value=value,command=command,indicatoron=0,state = state)
 
-    def radioValueGetter(self):
-        if self.selection.get() == 2:
-            self.encdeclabel.config(text="Enter the cipher to be decrypted")
+    def encDecKeyLabelChanger(self):        
+        self.encdeclabel.config(text = constants.DECRYPTION_TEXT if self.selection.get() == 2 else constants.ENCRYPTION_TEXT)
+        self.keylabel.config(text= constants.DECRYPT_KEY_FIELD_TEXT if self.selection.get() == 2 else constants.ENCRYPT_KEY_FIELD_TEXT)
+
+    def dropDownListener(self,*args):
+        if self.var.get() in constants.KEY_BASED_ENCRYPTIONS:
+            self.enableDecryptRadio()
+            self.enableKeyField(self.keyEntry)
         else:
-            self.encdeclabel.config(text="Enter the String to be encrypted")
+            self.disableDecryptRadio()
+            self.disableKeyField(self.keyEntry)
 
-    def getDropDownMenu(self,options):
-        var = StringVar(self.window)
-        var.set(options[0])
-        return OptionMenu(self.window,var,*options)
+    def getDropDownMenu(self):
+        self.var = StringVar(self.window)
+        self.var.set(self.options[0])
+        self.var.trace("w",self.dropDownListener)        
+        return OptionMenu(self.window,self.var,*self.options)
+
+    def enableDecryptRadio(self):
+        self.decrypter_radio.config(state=constants.NORMAL)
+
+    def disableDecryptRadio(self):
+        self.selection.set(1)
+        self.encDecKeyLabelChanger()
+        self.decrypter_radio.config(state=constants.DISABLED)
+
+    def disableKeyField(self,field):        
+        field.delete("1.0","end")
+        field.config(state=constants.DISABLED,bg=constants.LIGHTGREY)
+    
+    def enableKeyField(self,field):
+        field.config(state=constants.NORMAL,bg=constants.WHITE)
+
         

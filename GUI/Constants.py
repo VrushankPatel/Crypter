@@ -1,3 +1,14 @@
+NON_KEY_BASED_ENCRYPTIONS = [
+     "SHA256",
+    "SHA384",
+    "SHA224",
+    "SHA512",
+    "SHA1",
+    "MD5"
+]
+KEY_BASED_ENCRYPTIONS = [
+     "RC4"
+]
 # Window Properties constant
 TITLE = "Crypter"
 
@@ -11,10 +22,12 @@ WHITE = "white"
 
 # States
 DISABLED = "disabled"
+
 NORMAL = "normal"
 
 # Encryption Decryption text label constants
-ENCRYPTIONTEXT = "Enter the String to be encrypted"
-DECRYPTIONTEXT = "Enter the cipher to be decrypted"
-KEYFIELDTEXT = "Enter Key to encrypt the string : "
-CHOOSEALGORITHMTEXT = "Choose the Algorithm : "
+ENCRYPTION_TEXT = "Enter the String to be encrypted"
+DECRYPTION_TEXT = "Enter the cipher to be decrypted"
+ENCRYPT_KEY_FIELD_TEXT = "Enter Key to encrypt the string : "
+DECRYPT_KEY_FIELD_TEXT = "Enter Key to decrypt the cipher : "
+CHOOSE_ALGORITHM_TEXT = "Choose the Algorithm : "
