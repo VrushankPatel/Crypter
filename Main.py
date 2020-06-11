@@ -1,8 +1,8 @@
 from GUI import Window
 import GUI.Constants as constants
 import tkinter.font as font
-if __name__ == "__main__":
-    
+
+def buildwindow():    
     window = Window(constants.TITLE)        
     window.options = constants.NON_KEY_BASED_ENCRYPTIONS + constants.KEY_BASED_ENCRYPTIONS
 
@@ -35,3 +35,6 @@ if __name__ == "__main__":
     window.encDecOpEntry.grid(row=6,column=0,columnspan=2)
     window.encDecOpEntry.config(state=constants.DISABLED)
     window.window.mainloop()
+    
+if __name__ == "__main__":
+    buildwindow()
