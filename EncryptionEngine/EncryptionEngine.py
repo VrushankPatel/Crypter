@@ -32,14 +32,3 @@ class EncryptionEngine:
         self.key = key
         self.str = str       
         return getattr(object,encryption)()
-'''
-sha = EncryptionEngine("GeeksforGeeks","")
-print(sha.getEncrypted(sha,"sha256"))
-print(sha.getEncrypted(sha,"sha384"))
-print(sha.getEncrypted(sha,"sha224"))
-print(sha.getEncrypted(sha,"sha512"))
-print(sha.getEncrypted(sha,"sha1"))
-print(sha.getEncrypted(sha,"md5"))
-print(sha.getEncrypted(sha,"rc4"))
-print(sha.getEncrypted(sha,"rc4","Vrushank"))
-'''
