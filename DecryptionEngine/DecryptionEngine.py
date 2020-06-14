@@ -13,7 +13,3 @@ class DecrytionEngine:
         self.cipher = cipher
         self.key = key
         return getattr(object,decryption)()
-
-cipher = b'U7\x06\xdf\xd7\xb5d\x16^\xeb\xc7\x02\xdf'
-
-print(sha.getEncrypted(sha,"rc4",cipher,"Vrushank"))
