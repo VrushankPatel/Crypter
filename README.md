@@ -1,5 +1,5 @@
 # Crypter - Open Source ("Code - OSS")
-### Created a simple encrypter-decrypter GUI program to demonstrate the GUI with python tkinter, cryptography and object oriented programming with Python to university students.<br><br>
+### Created a simple encrypter-decrypter GUI program to demonstrate the GUI with python tkinter, cryptography and object oriented programming with Python.<br><br>
 <img src="https://github.com/VrushankPatel/Crypter/blob/master/GUI/Crypter.png"/><br>
 
 ## Dependencies <br>
